@@ -151,6 +151,26 @@ int main() {
    sale3.modify()->stock = stock3;
    sale4.modify()->stock = stock4;
 
+ 
+   Wt::Dbo::ptr<publisher> publisher_ = session.find<publisher>().where("id = ?").bind("1");
+
+   Wt::Dbo::collection<Wt::Dbo::ptr<stock>> stocks = session.find<stock>();
+ 
+   
+   
+  
+    
+
+   for (auto temp_books: publisher_->books ) {
+     for (auto temp_stocks : stocks) {
+       if (temp_books->title == temp_stocks->books->title) {
+         cout << temp_stocks->shops->name << endl;
+        
+       }
+     }
+        
+   }
+   
 
 
    tran.commit();
